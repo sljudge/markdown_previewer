@@ -1,26 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import marked from 'marked'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: '',
+      output: ''
+    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event){
+    let parsed = marked(event.target.value)
+    this.setState({
+      input: event.target.value,
+      output: parsed
+    })
+    console.log('input ', this.state.input)
+  };
+  render() {
+    return (
+      <div>
+        <div id='page' className='container'>
+          <div id='editor-container' className='container'>
+            <textarea id='editor' onChange={this.handleChange} value={this.state.input} placeholder='Insert your markdown text here'></textarea>
+          </div>
+          <div id='preview-container' className='container'>
+            <div dangerouslySetInnerHTML={{ __html: this.state.output }}/>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
 
 export default App;
