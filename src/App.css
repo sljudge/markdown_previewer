@@ -8,16 +8,18 @@ html, body{
   background-color: #333333;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-evenly
+  justify-content: space-evenly;
+  align-items: center
 }
 #editor-container, #preview-container{
-  min-height: 40%;
+  height: 90%;
   width: 40%;
   background-color: whitesmoke;
   font-size: 18px;
 }
 #preview-container{
-  padding: 5px
+  padding: 5px;
+  overflow-y: scroll
 }
 textarea{
   height: 100%;
@@ -28,12 +30,13 @@ textarea{
 textarea::placeholder{
   font-size: 18px
 }
-@media only screen and  (max-width: 1100px){
+@media only screen and  (max-width: 700px){
   #page{
     flex-direction: column;
     align-items: center
   }
   #editor-container, #preview-container{
+    height: 40%;
     width: 90%;
   }
 }
